@@ -134,36 +134,7 @@ cd ../frontend
 npm install
 ```
 
-4. **Configure Environment Variables**
-
-Create `backend/.env`:
-```env
-PORT=5000
-MONGODB_URI=mongodb://localhost:27017/videostream
-JWT_SECRET=your_jwt_secret_key_here
-FIREBASE_PROJECT_ID=your_firebase_project_id
-FIREBASE_CLIENT_EMAIL=your_firebase_client_email
-FIREBASE_PRIVATE_KEY="your_firebase_private_key"
-ADMIN_EMAIL=admin@admin.com
-ADMIN_PASSWORD=123456
-NODE_ENV=development
-```
-
-Create `frontend/.env`:
-```env
-VITE_API_URL=http://localhost:5000
-VITE_FIREBASE_API_KEY=your_firebase_api_key
-VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
-VITE_FIREBASE_PROJECT_ID=your_project_id
-```
-
-5. **Start MongoDB**
-```bash
-# If using local MongoDB
-mongod
-```
-
-6. **Run the Application**
+**Run the Application**
 
 Terminal 1 (Backend):
 ```bash
@@ -182,122 +153,6 @@ npm run dev
 - Backend API: http://localhost:5000
 - Health Check: http://localhost:5000/health
 
-## 🔐 Environment Variables
-
-### Backend Variables
-
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `PORT` | Server port (default: 5000) | Yes |
-| `MONGODB_URI` | MongoDB connection string | Yes |
-| `JWT_SECRET` | Secret key for JWT tokens | Yes |
-| `FIREBASE_PROJECT_ID` | Firebase project ID | Yes |
-| `FIREBASE_CLIENT_EMAIL` | Firebase service account email | Yes |
-| `FIREBASE_PRIVATE_KEY` | Firebase private key | Yes |
-| `ADMIN_EMAIL` | Admin login email | Yes |
-| `ADMIN_PASSWORD` | Admin login password | Yes |
-
-### Frontend Variables
-
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `VITE_API_URL` | Backend API URL | Yes |
-| `VITE_FIREBASE_API_KEY` | Firebase API key | Yes |
-| `VITE_FIREBASE_AUTH_DOMAIN` | Firebase auth domain | Yes |
-| `VITE_FIREBASE_PROJECT_ID` | Firebase project ID | Yes |
-
-## 📡 API Documentation
-
-### Authentication Endpoints
-
-#### Register User (Firebase)
-```http
-POST /api/auth/signup
-Content-Type: application/json
-
-{
-  "email": "user@example.com",
-  "password": "password123"
-}
-```
-
-#### Login User
-```http
-POST /api/auth/login
-Content-Type: application/json
-
-{
-  "email": "user@example.com",
-  "password": "password123"
-}
-```
-
-#### Admin Login
-```http
-POST /api/auth/admin-login
-Content-Type: application/json
-
-{
-  "email": "admin@admin.com",
-  "password": "123456"
-}
-```
-
-### Video Endpoints
-
-#### Upload Video
-```http
-POST /api/videos/upload
-Authorization: Bearer <token>
-Content-Type: multipart/form-data
-
-file: <video_file>
-title: "My Video"
-```
-
-#### Get User Videos
-```http
-GET /api/videos/user/:userId
-Authorization: Bearer <token>
-```
-
-#### Stream Video
-```http
-GET /api/videos/stream/:videoId
-Authorization: Bearer <token>
-Range: bytes=0-1024
-```
-
-#### Delete Video
-```http
-DELETE /api/videos/:videoId
-Authorization: Bearer <token>
-```
-
-### Admin Endpoints
-
-#### Get All Videos
-```http
-GET /api/admin/videos
-Authorization: Bearer <admin_token>
-```
-
-#### Get All Users
-```http
-GET /api/admin/users
-Authorization: Bearer <admin_token>
-```
-
-#### Update User Role
-```http
-PATCH /api/admin/users/:userId/role
-Authorization: Bearer <admin_token>
-Content-Type: application/json
-
-{
-  "role": "editor"
-}
-```
 
 ## 👥 User Roles & Permissions
 
@@ -371,57 +226,8 @@ curl -X GET http://localhost:5000/api/admin/users \
 - [ ] Admin can manage user roles
 - [ ] Multi-tenant isolation verified
 
-## 📦 Deployment
-
-### Backend Deployment (Heroku)
-
-```bash
-# Install Heroku CLI
-npm install -g heroku
-
-# Login to Heroku
-heroku login
-
-# Create app
-heroku create videostream-backend
-
-# Add MongoDB Atlas addon or use existing cluster
-heroku addons:create mongolab:sandbox
-
-# Set environment variables
-heroku config:set JWT_SECRET=your_secret
-heroku config:set FIREBASE_PROJECT_ID=your_project_id
-
-# Deploy
-git push heroku main
-```
-
-### Frontend Deployment (Vercel)
-
-```bash
-# Install Vercel CLI
-npm install -g vercel
-
-# Deploy
-cd frontend
-vercel
-
-# Set environment variables in Vercel dashboard
-# VITE_API_URL=https://your-backend.herokuapp.com
-```
 
 ## 🎯 Key Features Implementation
-
-### Real-Time Processing
-```javascript
-// Socket.IO implementation for live updates
-io.on('connection', (socket) => {
-  socket.on('video:upload', (data) => {
-    // Emit progress updates
-    socket.emit('upload:progress', { progress: 50 });
-  });
-});
-```
 
 ### Sensitivity Analysis
 - Automated content screening
@@ -451,10 +257,9 @@ This project is licensed under the MIT License.
 
 ## 👨‍💻 Developer
 
-**Your Name**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your Profile](https://linkedin.com/in/yourprofile)
-- Email: your.email@example.com
+**Shaikh Rayyan Ahmed**
+- LinkedIn:([https://linkedin.com/in/yourprofile](https://www.linkedin.com/in/bytexpert/?lipi=urn%3Ali%3Apage%3Ad_flagship3_people%3BEaQT59KDR9i1grjV1YMMtg%3D%3D))
+- Email: shaikhrayyanofficial@gmail.com
 
 ## 🙏 Acknowledgments
 
@@ -465,11 +270,3 @@ This project is licensed under the MIT License.
 - Socket.IO for real-time communication
 - Lucide React for beautiful icons
 - Tailwind CSS for responsive styling
-
-## 📞 Support
-
-For support, email support@videostream.com or open an issue in the repository.
-
----
-
-**Built with ❤️ for the Full-Stack Developer Community**
